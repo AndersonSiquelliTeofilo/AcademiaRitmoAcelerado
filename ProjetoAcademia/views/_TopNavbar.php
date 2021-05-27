@@ -6,6 +6,7 @@
 		<ul class="navbar-nav mb-2 mb-lg-0  ">
 			<li class="nav-item"><a class="nav-link" href="cadastro.php">Cadastre-se</a></li>
 			<li class="nav-item"><a class="nav-link" href="cadastro_funcionario.php">Cadastrar funcionário</a></li>
+			<li class="nav-item"><a class="nav-link" href="cadastro_funcao.php">Cadastrar função</a></li>
 			<li class="nav-item"><a class="nav-link" href="login.php">Entre</a></li>
 			<li class="nav-item"><a class="nav-link" href="inclusao.php">Incluir</a></li>
 			<li class="nav-item"><a class="nav-link" href="consulta.php">Consultar</a></li>

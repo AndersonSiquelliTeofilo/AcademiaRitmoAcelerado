@@ -4,7 +4,7 @@
 <body>
 <h3> CRUD - PHP com mysqli (POO) - Inclusão</h3>
 <?php
-	include_once('conexao.php');
+	include_once('data/conexao.php');
 	//criando o objeto mysql e conectando ao banco de dados
 	$mysql = new BancodeDados();
 	$mysql->conecta();

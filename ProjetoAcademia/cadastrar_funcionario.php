@@ -2,7 +2,7 @@
 	include('util.php');
 	include('models/usuario.php');
 
-	include_once('conexao.php');
+	include_once('data/conexao.php');
 	//criando o objeto mysql e conectando ao banco de dados
 	$mysql = new BancodeDados();
 	$mysql->conecta();

@@ -1,6 +1,6 @@
 <section>
 	<div class="container mt-3">
-		<form name="cadastro" action="cadastrar_funcionario.php" method="post" enctype="multipart/form-data">
+		<form name="cadastro" action="cadastro_funcao.php" method="post" enctype="multipart/form-data">
 			<div class="mb-3 row">
 				<label for="nome" class="col-sm-2 col-form-label">Função</label>
 				<div class="col-sm-10">

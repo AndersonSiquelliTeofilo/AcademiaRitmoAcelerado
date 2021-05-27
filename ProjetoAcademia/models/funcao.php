@@ -25,7 +25,7 @@
 		}
 		
 		public function sqlQueryInsert() {
-			return "insert into usuarios (Id, Nome) values ('$this->Id', '$this->Nome')";
+			return "insert into funcoes (Id, Nome) values ('$this->Id', '$this->Nome')";
 		}
 	}
 ?>
