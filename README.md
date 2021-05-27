@@ -4,7 +4,7 @@
 
 ### PHP, Bootstrap, JavaScript, MySql
 
-### - Obs: Antes de testar na sua máquina não esquece de rodar o script de banco de dados que está na página principal!
+- Obs: Antes de testar na sua máquina não esquece de rodar o script de banco de dados que está na página principal!
 
 ### Bootstrap Docs:
 ```
