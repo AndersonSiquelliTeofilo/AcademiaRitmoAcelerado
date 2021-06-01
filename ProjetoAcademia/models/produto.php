@@ -29,12 +29,13 @@
 		
 		private $DataInicio;
 		public function setDataInicio($valor) {
+			$dataInicio = date_create($valor);
 			$mesAnoAtual = date('Y').'-'.date('m');
-			$dataAtual = new DateTime(mesAnoAtual . '01');
-			if ($valor < $dataAtual) {
+			$dataAtual = date_create($mesAnoAtual . '-01');
+			if ($dataInicio < $dataAtual) {
 				throw new Exception('A data não pode ser menor do que o mês e ano atual');
 			}
-			$this->DataInicio = $valor;
+			$this->DataInicio = date_format($dataInicio, 'c');
 		}
 		public function getDataInicio() {
 			return $this->DataInicio;
@@ -42,10 +43,11 @@
 		
 		private $DataFim;
 		public function setDataFim($valor) {
-			if ($valor < $this->DataInicio) {
+			$dataFim = date_create($valor);
+			if ($dataFim < $this->DataInicio) {
 				throw new Exception('A data fim não pode ser menor do que a data de início');
 			}
-			$this->DataFim = $valor;
+			$this->DataFim = date_format($dataFim, 'c');
 		}
 		public function getDataFim() {
 			return $this->DataFim;
@@ -63,7 +65,7 @@
 		}
 		
 		public function sqlQueryInsert() {
-			return "insert into funcoes (Id, Nome, Preco, DataInicio, DataFim) 
+			return "insert into produtos (Id, Nome, Preco, DataInicio, DataFim) 
 			values ('$this->Id', '$this->Nome', $this->Preco, '$this->DataInicio', '$this->DataFim')";
 		}
 	}

@@ -1,6 +1,6 @@
 <section>
 	<div class="container mt-3">
-		<form name="cadastro" action="cadastrar_funcionario.php" method="post" enctype="multipart/form-data">
+		<form name="cadastro" action="Produto_Cadastrar.php" method="post" enctype="multipart/form-data">
 			<div class="mb-3 row">
 				<label for="nome" class="col-sm-2 col-form-label">Nome</label>
 				<div class="col-sm-10">
@@ -8,21 +8,21 @@
 				</div>
 			</div>
 			<div class="mb-3 row">
-				<label for="foto" class="col-sm-2 col-form-label">Foto</label>
+				<label for="preco" class="col-sm-2 col-form-label">Preço</label>
 				<div class="col-sm-10">
-				  <input type="file" class="form-control" name="foto">
+				  <input type="number" class="form-control" name="preco" step=".01" min="0" value="0" required>
 				</div>
 			</div>
 			<div class="mb-3 row">
-				<label for="email" class="col-sm-2 col-form-label">Email</label>
+				<label for="dataInicio" class="col-sm-2 col-form-label">Data Início</label>
 				<div class="col-sm-10">
-				  <input type="email" class="form-control" name="email">
+				  <input type="date" class="form-control" name="dataInicio">
 				</div>
 			</div>
 			<div class="mb-3 row">
-				<label for="senha" class="col-sm-2 col-form-label">Senha</label>
+				<label for="dataFim" class="col-sm-2 col-form-label">Data Fim</label>
 				<div class="col-sm-10">
-				  <input type="password" class="form-control" name="senha">
+				  <input type="date" class="form-control" name="dataFim">
 				</div>
 			</div>
 			<div class="d-grid gap-2 d-md-flex justify-content-md-center">

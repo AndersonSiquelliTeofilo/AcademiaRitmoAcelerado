@@ -2,9 +2,7 @@
 	if ($_POST) {
 		include('util.php');
 		include('models/funcao.php');
-
 		include_once('data/conexao.php');
-		//criando o objeto mysql e conectando ao banco de dados
 		$mysql = new BancodeDados();
 		$mysql->conecta();
 			
@@ -20,8 +18,8 @@
 			echo 'Exceção capturada: ',  $e->getMessage(), "\n";
 		}
 	} else {
-		$title = 'Cadastro';
-		$childView = 'views/cadastro_funcao_view.php';
+		$title = 'Cadastro função usuários';
+		$childView = 'views/Funcao_Cadastrar_view.php';
 		include('views/_Layout.php');
 	}
 ?>

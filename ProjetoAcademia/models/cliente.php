@@ -198,7 +198,7 @@
 		}
 		
 		public function sqlQueryInsert() {
-			return "insert into usuarios (Id, Nome, Email, EmailConfirmado, Password, Foto, StatusCadastro, DataCriacao, 
+			return "insert into clientes (Id, Nome, Email, EmailConfirmado, Password, Foto, StatusCadastro, DataCriacao, 
 			DataNascimento, Cpf, Logradouro, EnderecoNumero, Cidade, Estado, Celular, Telefone, ProdutoId) 
 			values ('$this->Id', '$this->Nome', '$this->Email', $this->EmailConfirmado, '$this->Password', '$this->Foto', 
 			$this->StatusCadastro, '$this->DataCriacao', '$this->DataNascimento', '$this->Cpf', '$this->Logradouro',
