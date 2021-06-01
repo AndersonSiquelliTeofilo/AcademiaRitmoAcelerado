@@ -5,13 +5,7 @@
 	<div class="collapse navbar-collapse nav justify-content-end" id="navbarResponsive">
 		<ul class="navbar-nav mb-2 mb-lg-0  ">
 			<li class="nav-item"><a class="nav-link" href="cadastro.php">Cadastre-se</a></li>
-			<li class="nav-item"><a class="nav-link" href="cadastro_funcionario.php">Cadastrar funcionário</a></li>
 			<li class="nav-item"><a class="nav-link" href="login.php">Entre</a></li>
-			<li class="nav-item"><a class="nav-link" href="inclusao.php">Incluir</a></li>
-			<li class="nav-item"><a class="nav-link" href="consulta.php">Consultar</a></li>
-			<li class="nav-item"><a class="nav-link" href="geral.php">Consulta Geral</a></li>
-			<li class="nav-item"><a class="nav-link" href="exclusao.php">Excluir</a></li>
-			<li class="nav-item"><a class="nav-link" href="alteracao.php">Alterar</a></li>
 		</ul>
     </div>
   </div>

@@ -96,5 +96,18 @@
 		const AguardandoAprovacao = 0;
 		const Desativado = 1;
 		const Aprovado = 2;
+		
+		public static function type($valor) {
+			if ($valor == 0) {
+				return "Aguardando Aprovação";
+			}
+			if ($valor == 1) {
+				return "Desativado";
+			}
+			if ($valor == 2) {
+				return "Aprovado";
+			}
+			return "Inválido";
+		}
 	}
 ?>
