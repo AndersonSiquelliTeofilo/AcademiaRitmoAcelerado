@@ -1,28 +1,52 @@
 <section>
 	<div class="container mt-3">
+		<?php
+			if ($notificacao_sucesso !== "") {
+				echo "<div class='alert alert-success' role='alert'>";
+				echo $notificacao_sucesso;
+				echo "</div>";
+			}
+			if ($notificacao_erro !== "") {
+				echo "<div class='alert alert-danger' role='alert'>";
+				echo $notificacao_erro;
+				echo "</div>";
+			}
+		?>
 		<form name="cadastro" action="Funcionario_Cadastrar.php" method="post" enctype="multipart/form-data">
 			<div class="mb-3 row">
 				<label for="nome" class="col-sm-2 col-form-label">Nome</label>
 				<div class="col-sm-10">
-				  <input type="text" class="form-control" name="nome">
+				  <input type="text" class="form-control" name="nome" required>
 				</div>
 			</div>
 			<div class="mb-3 row">
 				<label for="foto" class="col-sm-2 col-form-label">Foto</label>
 				<div class="col-sm-10">
-				  <input type="file" class="form-control" name="foto">
+				  <input type="file" class="form-control" name="foto" required>
 				</div>
 			</div>
 			<div class="mb-3 row">
 				<label for="email" class="col-sm-2 col-form-label">Email</label>
 				<div class="col-sm-10">
-				  <input type="email" class="form-control" name="email">
+				  <input type="email" class="form-control" name="email" required>
 				</div>
 			</div>
 			<div class="mb-3 row">
 				<label for="senha" class="col-sm-2 col-form-label">Senha</label>
 				<div class="col-sm-10">
-				  <input type="password" class="form-control" name="senha">
+				  <input type="password" class="form-control" name="senha" required>
+				</div>
+			</div>
+			<div class="mb-3 row">
+				<label for="funcao" class="col-sm-2 col-form-label">Função</label>
+				<div class="col-sm-10">
+					<select name="funcao" class="form-select" required>
+						<?php 
+							while($dados=mysqli_fetch_array($query)) {
+								echo "<option value='{$dados['Id']}'>{$dados['Nome']}</option>";
+							}
+						?>
+					</select>
 				</div>
 			</div>
 			<div class="d-grid gap-2 d-md-flex justify-content-md-center">

@@ -38,7 +38,7 @@
 						if (!empty($dados['Foto'])){
 							$foto = $dados['Foto'];
 						}
-						echo "<td align='center'><a href='verproduto.php?id=$id'><img src='content/assets/img/$foto' width='50px' heigth='50px'></a>";
+						echo "<td align='center'><a href='verproduto.php?id=$id'><img src='content/assets/fotos/$foto' width='50px' heigth='50px'></a>";
 						echo "</tr>";
 					}
 					

@@ -45,16 +45,25 @@ class BancodeDados {
 	}
 	
 	// função para executar o INSERT, UPDATE e DELETE (incluir.php, alterar.php, excluir.php)
+	// function sqlstring($string,$texto){
+		// $resultado = @mysqli_query($this->con, $string);
+		// if (!$resultado) {
+			// echo '<input type="button" onclick="window.location='."'index.php'".';" value="Voltar"><br><br>';
+			// die('<b>Query Inválida:</b>' . @mysqli_error($mysql->con)); 
+		// } else {
+			// echo "<b>$texto </b> - Realizada com  Sucesso";
+		// }
+		// $this->fechar();
+		// return;
+	// }
 	function sqlstring($string,$texto){
 		$resultado = @mysqli_query($this->con, $string);
 		if (!$resultado) {
-			echo '<input type="button" onclick="window.location='."'index.php'".';" value="Voltar"><br><br>';
-			die('<b>Query Inválida:</b>' . @mysqli_error($mysql->con)); 
+			die('<b>Query Inválida:</b>' . @mysqli_error($mysql->con));
+			return false;
 		} else {
-			echo "<b>$texto </b> - Realizada com  Sucesso";
+			return true;
 		}
-		$this->fechar();
-		return;
 	}
 }
 

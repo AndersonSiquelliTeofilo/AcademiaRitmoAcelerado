@@ -15,7 +15,7 @@
 		<link href="content/bootstrap-5.0.0-dist/css/bootstrap.min.css" rel="stylesheet" />
 		<link href="content/sidebars/sidebars.css" rel="stylesheet" />
 	
-		<?php include('./util.php'); ?>
+		<?php include_once('./util.php'); ?>
 	</head>
 	<body>
 		<!-- Navigation -->
