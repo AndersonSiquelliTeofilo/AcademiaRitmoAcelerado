@@ -129,6 +129,15 @@ CREATE TABLE IF NOT EXISTS `clientes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Extraindo dados da tabela `clientes`
+--
+
+INSERT INTO `clientes` (`Id`, `Nome`, `Email`, `EmailConfirmado`, `Password`, `Foto`, `StatusCadastro`, `DataCriacao`, `DataNascimento`, `Cpf`, `Logradouro`, `EnderecoNumero`, `Cidade`, `Estado`, `Celular`, `Telefone`, `ProdutoId`) VALUES
+('0a1206f2-576b-4a09-a3a6-9069cd539ba7', 'Teste', 'teste@email', 1, '123456', '0a1206f2-576b-4a09-a3a6-9069cd539ba721.jpg', 0, '2021-06-03 18:28:02', '1994-06-03 00:00:00', '12345678912', '12345678912', 2147483647, '12345678912', '12', '12345678912', '12345678912', '18a2b58f-46a6-41f1-8891-5ccbe9b3c7a4'),
+('3d5cd9a8-acc5-40f8-9193-cb3b60d8e12f', 'Teste', 'teste@email', 1, '123456', '3d5cd9a8-acc5-40f8-9193-cb3b60d8e12f21.jpg', 0, '2021-06-03 18:27:38', '2021-06-03 00:00:00', '12345678912', '12345678912', 2147483647, '12345678912', '12', '12345678912', '12345678912', '18a2b58f-46a6-41f1-8891-5ccbe9b3c7a4'),
+('fdd7fa07-eb50-4058-87de-6e5074fbe5d1', 'Teste', 'teste@email', 1, '123456789', 'fdd7fa07-eb50-4058-87de-6e5074fbe5d121.jpg', 0, '2021-06-03 18:25:50', '0000-00-00 00:00:00', '12345678912', '12345678912', 2147483647, '12345678912', '12', '12345678912', '12345678912', '18a2b58f-46a6-41f1-8891-5ccbe9b3c7a4');
+
+--
 -- Limitadores para a tabela `clientes`
 --
 -- ALTER TABLE `clientes`
