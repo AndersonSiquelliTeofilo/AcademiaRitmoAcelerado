@@ -28,4 +28,8 @@
 			return "insert into funcoes (Id, Nome) values ('$this->Id', '$this->Nome')";
 		}
 	}
+	
+	function sqlQuerySelectAllFuncoes() {
+		return "select * from funcoes order by Nome";
+	}
 ?>

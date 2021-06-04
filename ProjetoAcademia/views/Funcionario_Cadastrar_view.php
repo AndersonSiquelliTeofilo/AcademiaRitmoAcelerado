@@ -1,17 +1,5 @@
 <section>
 	<div class="container mt-3">
-		<?php
-			if ($notificacao_sucesso !== "") {
-				echo "<div class='alert alert-success' role='alert'>";
-				echo $notificacao_sucesso;
-				echo "</div>";
-			}
-			if ($notificacao_erro !== "") {
-				echo "<div class='alert alert-danger' role='alert'>";
-				echo $notificacao_erro;
-				echo "</div>";
-			}
-		?>
 		<form name="cadastro" action="Funcionario_Cadastrar.php" method="post" enctype="multipart/form-data">
 			<div class="mb-3 row">
 				<label for="nome" class="col-sm-2 col-form-label">Nome</label>
@@ -42,7 +30,7 @@
 				<div class="col-sm-10">
 					<select name="funcao" class="form-select" required>
 						<?php 
-							while($dados=mysqli_fetch_array($query)) {
+							while($dados=mysqli_fetch_array($lista_funcoes)) {
 								echo "<option value='{$dados['Id']}'>{$dados['Nome']}</option>";
 							}
 						?>

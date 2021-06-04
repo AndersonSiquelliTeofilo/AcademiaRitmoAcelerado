@@ -73,11 +73,12 @@
 		private $DataNascimento;
 		public function setDataNascimento($valor) {
 			$mesAnoAtual = date('Y').'-'.date('m');
-			$dataAtual = new DateTime(mesAnoAtual . '01');
+			$dataAtual = new DateTime($mesAnoAtual . '-01');
 			if ($valor > $dataAtual) {
 				throw new Exception('Data de nascimento inválida');
 			}
-			$this->DataNascimento = $valor;
+			$dataNascimento = new DateTime($valor);
+			$this->DataNascimento = $dataNascimento->format('c');
 		}
 		public function getDataNascimento() {
 			return $this->DataNascimento;
@@ -141,7 +142,7 @@
 		private $Celular;
 		public function setCelular($valor) {
 			if ($valor !== ""){
-				if (strlen($valor) < 1 or strlen($valor > 12)) {
+				if (strlen($valor) < 1) {
 					throw new Exception('Celular inválido');
 				}
 				$this->Celular = $valor;
@@ -154,7 +155,7 @@
 		private $Telefone;
 		public function setTelefone($valor) {
 			if ($valor !== ""){
-				if (strlen($valor) < 1 or strlen($valor > 11)) {
+				if (strlen($valor) < 1) {
 				throw new Exception('Telefone inválido');
 				}
 				$this->Telefone = $valor;
@@ -181,7 +182,7 @@
 			$this->Id = $id;
 			$this->setNome($nome);
 			$this->setEmail($email);
-			$this->setEmailConfirmado(false);
+			$this->setEmailConfirmado(true);
 			$this->setPassword($password);
 			$this->setFoto($foto);
 			$this->setStatusCadastro($statusCadastro);
@@ -197,7 +198,7 @@
 			$this->setProdutoId($produtoId);
 		}
 		
-		public function sqlQueryInsert() {
+		public function sqlQueryInsert() {			
 			return "insert into clientes (Id, Nome, Email, EmailConfirmado, Password, Foto, StatusCadastro, DataCriacao, 
 			DataNascimento, Cpf, Logradouro, EnderecoNumero, Cidade, Estado, Celular, Telefone, ProdutoId) 
 			values ('$this->Id', '$this->Nome', '$this->Email', $this->EmailConfirmado, '$this->Password', '$this->Foto', 
@@ -205,11 +206,44 @@
 			'$this->EnderecoNumero', '$this->Cidade', '$this->Estado', '$this->Celular', '$this->Telefone', '$this->ProdutoId')";
 		}
 	}
+	
+	function sqlQuerySelectAllUsers() {
+		return "select * from clientes order by DataCriacao desc";
+	}
+	
+	function sqlQuerySelectUserById($id) {
+		return "select * from clientes where Id='$id'";
+	}
+	
+	function sqlQuerySelectUserByEmail($email) {
+		return "select Id, Nome, Password from clientes where Email='$email' order by DataCriacao LIMIT 1";
+	}
+	
+	function sqlQuerySelectProdutoNomeByUserId($id) {
+		return "select P.Nome from produtos as P inner join clientes as C on C.ProdutoId=P.Id where C.Id='$id'";
+	}
+
+	function sqlQueryDeleteUserById($id) {
+		return "delete from clientes where Id='$id'";
+	}
 
 	abstract class Status
 	{
 		const AguardandoAprovacao = 0;
 		const Desativado = 1;
 		const Aprovado = 2;
+		
+		public static function type($valor) {
+			if ($valor == 0) {
+				return "Aguardando Aprovação";
+			}
+			if ($valor == 1) {
+				return "Desativado";
+			}
+			if ($valor == 2) {
+				return "Aprovado";
+			}
+			return "Inválido";
+		}
 	}
 ?>

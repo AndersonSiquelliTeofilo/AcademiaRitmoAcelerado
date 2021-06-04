@@ -10,7 +10,7 @@
 			<div class="d-grid gap-2 d-md-flex justify-content-md-center">
 				<input type="submit" class="btn btn-success" value="Cadastrar">
 				<input type="reset" class="btn btn-warning" value="Limpar">
-				<input type="button" class="btn btn-light" onclick="window.location='index.php';" value="Cancelar">
+				<input type="button" class="btn btn-light" onclick="window.location='Funcao_Consultar.php';" value="Cancelar">
 			</div>
 		</form>
 	</div>

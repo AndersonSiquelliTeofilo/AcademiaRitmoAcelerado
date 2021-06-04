@@ -1,26 +1,39 @@
 <?php
-	if ($_POST) {
-		include('util.php');
-		include('models/produto.php');
+	try {
 		include_once('data/conexao.php');
+		include_once('util.php');
+		include_once('models/produto.php');
 		$mysql = new BancodeDados();
 		$mysql->conecta();
-			
-		try {
-			if( $_POST['nome'] !== "" ) { 
+		
+		if ($_POST) {
+			if( $_POST['nome'] !== "" ) {
+				
 				$produto = new Produto(guid(), $_POST['nome'], $_POST['preco'], $_POST['dataInicio'], $_POST['dataFim']);
-				$resultado = $mysql->sqlstring($produto->sqlQueryInsert(),"INCLUSÃO");
-				echo 'Cadastro Realizado';
+				$insert_Produto = $mysql->sqlQueryCommand($produto->sqlQueryInsert());
+				if (!$insert_Produto) {
+					header("Location: Produto_Consultar.php?notificacao_erro=true");
+					exit();
+				}
+				
+				header("Location: Produto_Consultar.php?notificacao_sucesso=true");
+				exit();
 				
 			} else {
-				header('Location: erro.php');
+				header("Location: Produto_Consultar.php?notificacao_erro=true");
+				exit();
 			}
-		} catch (Exception $e) {
-			echo 'Exceção capturada: ',  $e->getMessage(), "\n";
-		}
-	} else {
+			
+			header("Location: Produto_Consultar.php?notificacao_erro=true");
+			exit();
+		} 
+		
 		$title = 'Cadastro Produto';
 		$childView = 'views/Produto_Cadastrar_view.php';
 		include('views/_Layout.php');
+		$mysql->fechar();
+		
+	} catch (Exception $e) {
+		echo 'Exceção capturada: ',  $e->getMessage(), "\n";
 	}
 ?>

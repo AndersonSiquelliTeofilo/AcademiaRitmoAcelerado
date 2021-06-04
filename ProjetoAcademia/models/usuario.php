@@ -70,18 +70,22 @@
 		
 		private $DataCriacao;
 		
-		public function __construct($id, $nome, $email, $password, $foto, $statusCadastro) {
+		public function __construct($id, $nome, $email, $password, $foto, $statusCadastro = 0, $emailConfirmado = true, $datacriacao = null) {
 			if (strlen($id) < 1) {
 				throw new Exception('O id do usuário não pode ser menor que 1');
 			}
 			$this->Id = $id;
 			$this->setNome($nome);
 			$this->setEmail($email);
-			$this->setEmailConfirmado(true);
+			$this->setEmailConfirmado($emailConfirmado);
 			$this->setPassword($password);
 			$this->setFoto($foto);
 			$this->setStatusCadastro($statusCadastro);
-			$this->DataCriacao = date('c');
+			if ($datacriacao == null) {
+				$this->DataCriacao = date('c');
+			} else {
+				$this->DataCriacao = $datacriacao;
+			}
 		}
 		
 		public function sqlQueryInsert() {
@@ -89,6 +93,36 @@
 			values ('$this->Id', '$this->Nome', '$this->Email', $this->EmailConfirmado, '$this->Password', '$this->Foto', 
 			$this->StatusCadastro, '$this->DataCriacao')";
 		}
+		
+		public function sqlQueryUpdate() {
+			return "update usuarios set 
+			Id='$this->Id', Nome='$this->Nome', Email='$this->Email', Password='$this->Password', Foto='$this->Foto'
+			where Id='$this->Id'";
+		}
+	}
+
+	function sqlQuerySelectAllUsers() {
+		return "select * from usuarios order by DataCriacao desc";
+	}
+	
+	function sqlQuerySelectUserById($id) {
+		return "select * from usuarios where Id='$id'";
+	}
+	
+	function sqlQuerySelectUserByEmail($email) {
+		return "select Id, Nome, Password from usuarios where Email='$email' order by DataCriacao LIMIT 1";
+	}
+	
+	function sqlQuerySelectFuncaoNomeUserById($id) {
+		return "select F.Nome from usuariosfuncoes as UF inner join funcoes as F on UF.FuncaoId=F.Id where UF.UsuarioId='$id'";
+	}
+	
+	function sqlQueryDeleteUserById($id) {
+		return "delete from usuarios where Id='$id'";
+	}
+	
+	function sqlQueryDeleteFuncaoByUserId($id) {
+		return "delete from usuariosfuncoes where UsuarioId='$id'";
 	}
 
 	abstract class Status

@@ -16,6 +16,7 @@ https://getbootstrap.com/docs/5.0/getting-started/introduction/
 https://www.php.net/docs.php
 https://www.ppgia.pucpr.br/pt/arquivos/techdocs/php/language.oop5.overloading.html
 https://www.youtube.com/watch?v=3fOXPjywfdk
+https://pt.stackoverflow.com/questions/37563/%C3%89-poss%C3%ADvel-criar-classes-com-dois-construtores
 ```
 
 ## Diagrama de banco de dados

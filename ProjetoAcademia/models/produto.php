@@ -69,4 +69,12 @@
 			values ('$this->Id', '$this->Nome', $this->Preco, '$this->DataInicio', '$this->DataFim')";
 		}
 	}
+	
+	function sqlQuerySelectAllProdutos() {
+		return "select * from produtos where DataFim='9999-12-31 00:00:00'";
+	}
+	
+	function sqlQuerySelectAllofAllProdutos() {
+		return "select * from produtos order by DataFim desc";
+	}	
 ?>

@@ -1,50 +1,72 @@
 <section>
 	<div class="container mt-3">
-		<table class="table table-striped table-hover">
-			<thead>
-				<tr>
-					<th scope="col">Função</th>
-					<th scope="col">Nome</th>
-					<th scope="col">Email</th>
-					<th scope="col">Email Confirmado</th>
-					<th scope="col">Status Cadastro</th>
-					<th scope="col">Data Criação</th>
-					<th scope="col">Ações</th>
-					<th scope="col">Foto</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php 				
-					while($dados=mysqli_fetch_array($query)) 
-					{
-						$result = mysqli_query($mysql->con,"select FuncaoId from usuariosfuncoes where UsuarioId='".$dados['Id']."' order by FuncaoId LIMIT 1");
-						$funcaoNome = mysqli_query($mysql->con,"select Nome from funcoes where Id='".$result->fetch_row()[0]."' order by Id LIMIT 1");
+		<?php
+			if ($notificacao_sucesso !== "") {
+				echo "<div class='alert alert-success' role='alert'>";
+				echo $notificacao_sucesso;
+				echo "</div>";
+			}
+			if ($notificacao_alteracao !== "") {
+				echo "<div class='alert alert-info' role='alert'>";
+				echo $notificacao_alteracao;
+				echo "</div>";
+			}
+			if ($notificacao_deletado !== "") {
+				echo "<div class='alert alert-danger' role='alert'>";
+				echo $notificacao_deletado;
+				echo "</div>";
+			}
+			if ($notificacao_erro !== "") {
+				echo "<div class='alert alert-danger' role='alert'>";
+				echo $notificacao_erro;
+				echo "</div>";
+			}
+		?>
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th scope="col"></th>
+						<th scope="col">Nome</th>
+						<th scope="col">Função</th>
+						<th scope="col">Email</th>
+						<th scope="col">Email Confirmado</th>
+						<th scope="col">Status Cadastro</th>
+						<th scope="col">Data Criação</th>
+						<th scope="col">Foto</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+						while($dados=mysqli_fetch_array($lista_usuarios)) 
+						{
+							$id = base64_encode($dados['Id']);
+							$result = mysqli_query($mysql->con,"select FuncaoId from usuariosfuncoes where UsuarioId='".$dados['Id']."' order by FuncaoId LIMIT 1");
+							$funcaoNome = mysqli_query($mysql->con,"select Nome from funcoes where Id='".$result->fetch_row()[0]."' order by Id LIMIT 1");
 
-						echo "<tr>";
-						echo "<td>". $dados['Nome'] ."</td>";
-						echo "<td>". $funcaoNome->fetch_row()[0] ."</td>";
-						echo "<td>". $dados['Email'] ."</td>";
-						if ($dados['EmailConfirmado'] == 1) {
-							echo "<td>Sim</td>";
-						} else {
-							echo "<td>Não</td>";
-						}						
-						echo "<td>". Status::type($dados['StatusCadastro']) ."</td>";
-						echo "<td>". $dados['DataCriacao'] ."</td>";
-						echo "<td><a href='#' class='btn btn-primary'>Editar</a> <a href='#' class='btn btn-danger'>Desativar</a></td>";
-						
-						$id = base64_encode($dados['Id']);
-						$foto = 'SemImagem.png';
-						if (!empty($dados['Foto'])){
-							$foto = $dados['Foto'];
+							echo "<tr>";
+							echo "<td><a href='./Funcionario_Visualizar.php?id=$id' class='btn btn-info'><i class='bi bi-eye'></i> Visualizar</a></td>";
+							echo "<td class='hidden-xs hidden-sm'>". $dados['Nome'] ."</td>";
+							echo "<td>". $funcaoNome->fetch_row()[0] ."</td>";
+							echo "<td class='hidden-xs hidden-sm'>". $dados['Email'] ."</td>";
+							if ($dados['EmailConfirmado'] == 1) {
+								echo "<td>Sim</td>";
+							} else {
+								echo "<td>Não</td>";
+							}						
+							echo "<td>". Status::type($dados['StatusCadastro']) ."</td>";
+							echo "<td>". $dados['DataCriacao'] ."</td>";
+											
+							$foto = 'SemImagem.png';
+							if (!empty($dados['Foto']) && file_exists("content/assets/fotos/" . $dados['Foto'])){
+								$foto = $dados['Foto'];
+							}
+							echo "<td align='center'><img src='content/assets/fotos/$foto' width='50px' heigth='50px'>";
+							echo "</tr>";
 						}
-						echo "<td align='center'><a href='verproduto.php?id=$id'><img src='content/assets/fotos/$foto' width='50px' heigth='50px'></a>";
-						echo "</tr>";
-					}
-					
-					$mysql->fechar();
-				?>
-			</tbody>
-		</table>
+					?>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </section>
